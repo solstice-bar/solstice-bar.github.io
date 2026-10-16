@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Un lieu sur Solstice</title>
+  <meta name="description" content="Ouvrez ce lieu dans Solstice pour savoir quand sa terrasse est au soleil.">
+  <meta name="apple-itunes-app" content="app-id=6763256220">
+  <link rel="icon" href="/favicon.png">
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <main>
+    <img class="icon" src="/icon.png" alt="" width="88" height="88">
+    <p class="eyebrow">Solstice</p>
+    <h1 id="name">Un lieu sur Solstice</h1>
+    <p>Ouvrez-le dans Solstice pour savoir quand sa terrasse est au soleil, heure par heure.</p>
+    <div class="actions">
+      <a class="button primary" id="open" href="solstice://">Ouvrir dans Solstice</a>
+      <a class="button" href="https://apps.apple.com/fr/app/id6763256220">Télécharger sur l’App Store</a>
+    </div>
+    <a class="quiet" id="map" href="#" hidden>Voir sur une carte</a>
+  </main>
+  <script>
+    // The page only shows when the app did not take the link: no app, or the link was typed
+    // into the browser, which never hands a link to an app. Everything comes from the query,
+    // written as text, never as markup.
+    (function () {
+      var query = location.search.replace(/^\?/, '');
+      var params = {};
+      query.split('&').forEach(function (pair) {
+        var i = pair.indexOf('=');
+        if (i <= 0) return;
+        try { params[pair.slice(0, i)] = decodeURIComponent(pair.slice(i + 1).replace(/\+/g, ' ')); } catch (e) {}
+      });
+      if (params.n) {
+        document.getElementById('name').textContent = params.n;
+        document.title = params.n + ' · Solstice';
+      }
+      if (query) document.getElementById('open').href = 'solstice://p?' + query;
+      var ll = (params.ll || '').split(',').map(Number);
+      if (ll.length === 2 && isFinite(ll[0]) && isFinite(ll[1])) {
+        var apple = /iPhone|iPad|Macintosh/.test(navigator.userAgent);
+        var map = document.getElementById('map');
+        map.href = apple
+          ? 'https://maps.apple.com/?ll=' + ll.join(',') + '&q=' + encodeURIComponent(params.n || 'Solstice')
+          : 'https://www.google.com/maps/search/?api=1&query=' + ll.join(',');
+        map.hidden = false;
+      }
+    })();
+  </script>
+</body>
+</html>

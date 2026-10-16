@@ -1,0 +1,10 @@
+{
+  "applinks": {
+    "details": [
+      {
+        "appIDs": ["A72XCM4V65.bar.solstice", "A72XCM4V65.bar.solstice.beta", "A72XCM4V65.bar.solstice.dev"],
+        "components": [{ "/": "/p/*", "comment": "A shared place" }, { "/": "/p" }]
+      }
+    ]
+  }
+}

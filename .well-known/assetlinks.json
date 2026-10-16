@@ -1,0 +1,18 @@
+[
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "bar.solstice.beta",
+      "sha256_cert_fingerprints": ["57:8E:4B:B5:F5:CE:D1:0C:D3:28:6C:27:F9:D1:8C:6A:3A:C7:80:55:CD:DC:16:02:78:74:22:22:C1:78:D5:18"]
+    }
+  },
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "bar.solstice.beta.e2e",
+      "sha256_cert_fingerprints": ["0B:40:37:6E:51:BD:22:B0:DF:77:98:9D:B9:69:77:25:86:73:47:E3:E5:E5:22:01:37:57:FB:E5:B8:43:02:43"]
+    }
+  }
+]
